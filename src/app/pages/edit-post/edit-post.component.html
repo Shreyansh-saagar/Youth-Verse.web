@@ -1,55 +1,63 @@
 <app-header></app-header>
-
-<section class="bg-gray-100">
+@if(post.singlePost){
+  <section class="bg-gray-100">
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
         <div class="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-            <p class="text-xl tracking-wide font-bold">
-                Hello Shreyansh,
-            </p>
-            <p class="tracking-wide mb-4 text-slate-600 text-sm font-medium">Edit your verse...</p>
-          <form action="#" class="space-y-4">
+          <p class="text-xl tracking-wide font-bold">Hello Shreyansh,</p>
+          <p class="tracking-wide mb-4 text-slate-600 text-sm font-medium">
+            Edit your verse...
+          </p>
+          <form #editPost="ngForm" (ngSubmit)="editForm()" class="space-y-4">
             <div>
-              <label class="sr-only" for="name">Verse Title</label>
+              <label class="sr-only" for="title">Verse Title</label>
               <input
                 class="w-full border border-slate-400 rounded-lg p-3 text-sm"
                 placeholder="Verse title..."
                 type="text"
                 id="title"
+                required
+                [(ngModel)]="post.singlePost.title"
+                name="title"
               />
             </div>
   
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label class="sr-only" for="field">Related to</label>
+                <label class="sr-only" for="related">Related to</label>
                 <input
-                  class="border border-slate-400  w-full rounded-lg p-3 text-sm"
+                  class="border border-slate-400 w-full rounded-lg p-3 text-sm"
                   placeholder="Verse related to..."
                   type="text"
-                  id="field"
+                  required
+                  [(ngModel)]="post.singlePost.related"
+                  name="related"
                 />
               </div>
   
               <div>
-                <label class="sr-only" for="topic">Topics Coverd</label>
+                <label class="sr-only" for="topics">Topics Covered</label>
                 <input
-                  class="w-full border border-slate-400  rounded-lg p-3 text-sm"
+                  class="w-full border border-slate-400 rounded-lg p-3 text-sm"
                   placeholder="Topics covered"
                   type="text"
-                  id="topic"
+                  required
+                  [(ngModel)]="post.singlePost.topics"
+                  name="topics"
                 />
               </div>
             </div>
-            
   
             <div>
               <label class="sr-only" for="desc">Verse Description</label>
   
               <textarea
-                class="w-full border border-slate-400  rounded-lg p-3 text-sm"
+                class="w-full border border-slate-400 rounded-lg p-3 text-sm"
                 placeholder="Verse description..."
                 rows="8"
-                id="desc"
+                required
+                [(ngModel)]="post.singlePost.desc"
+                name="desc"
               ></textarea>
             </div>
   
@@ -64,8 +72,14 @@
           </form>
         </div>
         <div class="lg:col-span-2 lg:py-12">
-            <img src="assets/6.png" class="h-auto w-auto rotate-3 border border-black shadow-md" alt="">
+          <img
+            src="assets/6.png"
+            class="h-auto w-auto rotate-3 border border-black shadow-md"
+            alt=""
+          />
         </div>
       </div>
     </div>
   </section>
+}
+

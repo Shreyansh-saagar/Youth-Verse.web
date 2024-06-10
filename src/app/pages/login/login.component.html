@@ -10,12 +10,14 @@
         </p>
       </div>
   
-      <form action="#" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <form class="mx-auto mb-0 mt-8 max-w-md space-y-4" #login="ngForm" (ngSubmit)="checkLogin()">
         <div>
           <label for="email" class="sr-only">Email</label>
   
           <div class="relative">
             <input
+              required
+              ngModel
               name="email"
               type="email"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -46,7 +48,9 @@
   
           <div class="relative">
             <input
-                name="password"
+              required
+              ngModel
+              name="password"
               type="password"
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
