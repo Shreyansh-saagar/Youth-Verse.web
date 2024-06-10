@@ -4,7 +4,7 @@
       <div class="md:flex md:items-center md:gap-12">
         <a class="block text-teal-600 dark:text-teal-600" href="#">
           <span class="sr-only">Home</span>
-          <img class="relative w-18 h-12" src="assets/logo header.png" alt="" />
+          <img [routerLink]="['/']" class="relative w-18 h-12" src="assets/logo header.png" alt="" />
         </a>
       </div>
 
@@ -14,7 +14,7 @@
             <li>
               <a
                 class="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                [routerLink]="['/']"
               >
                 About
               </a>
@@ -23,7 +23,7 @@
             <li>
               <a
                 class="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                [routerLink]="['/blog']"
               >
                 Blog
               </a>
@@ -32,44 +32,35 @@
             <li>
               <a
                 class="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                href="#"
+                [routerLink]="['/faq']"
               >
-                History
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                href="#"
-              >
-                Services
+                FAQs
               </a>
             </li>
           </ul>
         </nav>
       </div>
 
-      @if(check()){
+      @if(auth.isAuthenticated){
         <!-- User Profile and logout -->
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4 group relative">
             <a
               class="rounded-md border border-white px-5 py-2.5 text-sm font-medium text-white shadow cursor-pointer"
             >
-              Shreyansh
+              {{auth.username}}
             </a>
             <div
               class="absolute hidden group-hover:block top-8 bg-white shadow-lg mt-2 w-48"
             >
               <a
-                href="#"
+                [routerLink]="['/create-post']"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >Your Posts</a
+                >Create Post</a
               >
               <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                (click)="logout()"
+                class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >Logout</a
               >
             </div>
@@ -102,7 +93,7 @@
           <div class="sm:flex sm:gap-4">
             <a
               class="rounded-md bg-white px-5 py-2.5 text-sm font-medium text-red-600 shadow"
-              href="#"
+              [routerLink]="['/signin']" 
             >
               Login
             </a>
@@ -110,7 +101,7 @@
             <div class="hidden sm:flex">
               <a
                 class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-black dark:text-white"
-                href="#"
+                [routerLink]="['/signup']" 
               >
                 Register
               </a>

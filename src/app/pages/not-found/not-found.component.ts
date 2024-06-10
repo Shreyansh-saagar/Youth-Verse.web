@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../shared-component/header/header.component';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [],
+  imports: [RouterLink,HeaderComponent],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.css'
 })

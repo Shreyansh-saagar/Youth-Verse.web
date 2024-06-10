@@ -1,14 +1,14 @@
-@for(post of posts; track $index){
+@for(post of posts.allPost; track $index){
 <article
-  class="flex my-2 bg-white transition hover:shadow-xl dark:bg-gray-900 dark:shadow-gray-800/25"
+  class="flex my-2 bg-slate-50 transition hover:shadow-xl"
 >   
   <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
     <time
       datetime="2022-10-10"
-      class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900 dark:text-white"
+      class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900"
     >
-      <span>{{post.author}}</span>
-      <span class="w-px flex-1 bg-gray-900/10 dark:bg-white/10"></span>
+      <span>{{post.user.name}}</span>
+      <span class="w-px flex-1 bg-gray-900/10"></span>
       <span>Verse</span>
     </time>
   </div>
@@ -16,23 +16,23 @@
   <div class="hidden sm:block sm:basis-56">
     <img
       alt=""
-      src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+      [src]="posts.imgBaseUrl+post.image"
       class="aspect-square h-full w-full object-cover"
     />
   </div>
 
   <div class="flex flex-1 flex-col justify-between">
     <div
-      class="border-s border-gray-900/10 p-4 sm:!border-l-transparent sm:p-6 dark:border-white/10"
+      class="border-s border-gray-900/10 p-4 sm:!border-l-transparent sm:p-6 "
     >
       <a href="#">
-        <h3 class="font-bold uppercase text-gray-900 dark:text-white">
+        <h3 class="font-bold uppercase text-gray-900 ">
           {{post.title |slice: 0: 50}}
         </h3>
       </a>
 
       <p
-        class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700 dark:text-gray-200"
+        class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700"
       >
         {{post.desc |slice: 0: 200}}
       </p>
@@ -40,7 +40,7 @@
 
     <div class="sm:flex sm:items-end sm:justify-end">
       <a
-        href="#"
+        [routerLink]="['/post-detail',post.id]"
         class="block bg-yellow-400 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-500"
       >
         Read Blog

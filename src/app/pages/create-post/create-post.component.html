@@ -12,14 +12,16 @@
                 Hello Shreyansh,
             </p>
             <p class="tracking-wide mb-4 text-slate-600 text-sm font-medium">Lets create a new verse</p>
-          <form action="#" class="space-y-4">
+          <form class="space-y-4" #createPost="ngForm" (ngSubmit)="onCreatePost()">
             <div>
               <label class="sr-only" for="name">Verse Title</label>
               <input
                 class="w-full border border-slate-400 rounded-lg p-3 text-sm"
                 placeholder="Verse title..."
                 type="text"
-                id="title"
+                required
+                ngModel
+                name="title"
               />
             </div>
   
@@ -30,7 +32,8 @@
                   class="border border-slate-400  w-full rounded-lg p-3 text-sm"
                   placeholder="Verse related to..."
                   type="text"
-                  id="field"
+                  ngModel
+                  name="related"
                 />
               </div>
   
@@ -40,7 +43,8 @@
                   class="w-full border border-slate-400  rounded-lg p-3 text-sm"
                   placeholder="Topics covered"
                   type="text"
-                  id="topic"
+                  ngModel
+                  name="topics"
                 />
               </div>
             </div>
@@ -61,10 +65,13 @@
                   </a>
                   <label class="sr-only" for="image">Add image</label>
                   <input
+                    ngModel
+                    (change)="onFileSelected($event)"
                     class="hidden"
                     type="file"
                     id="image"
                     accept="image/*"
+                    name="image"
                   />
                 </div>
                 <p class="text-sm text-slate-600">Select any image for your verse if you want...</p>
@@ -78,13 +85,16 @@
                 class="w-full border border-slate-400  rounded-lg p-3 text-sm"
                 placeholder="Verse description..."
                 rows="8"
-                id="desc"
+                required
+                ngModel
+                name="desc"
               ></textarea>
             </div>
   
             <div class="mt-4">
               <button
                 type="submit"
+                [disabled]="createPost.invalid"
                 class="inline-block w-full rounded-lg bg-red-600 px-5 py-3 font-medium text-white sm:w-auto"
               >
                 Submit Verse
