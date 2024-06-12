@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { posts } from '../../../posts.model';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { PostService } from '../../post.service';
 
@@ -14,13 +14,14 @@ import { PostService } from '../../post.service';
 })
 export class DetailBlogComponent implements OnInit{
 
-  route=inject(ActivatedRoute)
+  router=inject(ActivatedRoute)
+  route=inject(Router)
   auth=inject(AuthService)
   post = inject(PostService)
   postDetail:any;
   error:any;
   ngOnInit(): void {
-      this.route.paramMap.subscribe((params)=>{
+      this.router.paramMap.subscribe((params)=>{
         const postId = params.get('id');
         this.post.getSinglePost(postId).subscribe({
           next:(res)=>{
@@ -34,4 +35,19 @@ export class DetailBlogComponent implements OnInit{
       })
   }
 
+
+
+  deletePost(postId: string) {
+    if (confirm('Are you sure you want to delete this post?')) {
+      this.post.deletePost(postId).subscribe({
+        next: (res) => {
+          console.log('Delete successful', res);
+          this.route.navigate(['/blog']); // Navigate to another page after deletion
+        },
+        error: (err) => {
+          console.error('Error deleting post', err);
+        }
+      });
+    }
+  }
 }
