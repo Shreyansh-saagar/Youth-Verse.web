@@ -18,16 +18,7 @@
             Creator -  {{postDetail.user.name}} | ( {{postDetail.user.role}} )
           </strong>
         </div>
-        
-  
-        <h3 class="mt-4 text-lg font-semibold tracking-wide sm:text-xl">
-          <a class="no-underline"> {{postDetail.title}} </a>
-        </h3>
-  
-        <p class="mt-2 text-base  bg-slate-300 rounded-md px-2 tracking-wide ">
-          {{postDetail.desc}}
-        </p>
-  
+
         <div class="mt-4 sm:flex sm:items-center sm:gap-2">
           <div class="flex items-center gap-1 bg-yellow-200 rounded-lg px-2 py-1 text-black">
             <p class="text-xs font-medium">Related - {{postDetail.related}}</p>
@@ -39,10 +30,21 @@
             Covered Topic <a href="#" class="underline hover:text-gray-700"> {{postDetail.topics}}</a>
           </p>
         </div>
+        
+  
+        <h3 class="mt-4 text-lg font-semibold tracking-wide sm:text-xl">
+          <a class="no-underline"> {{postDetail.title}} </a>
+        </h3>
+  
+        <p class="mt-2 text-base py-2 text-justify  bg-slate-100 rounded-md px-2 tracking-wide whitespace-pre-wrap ">
+          {{postDetail.desc}}
+        </p>
+  
+
       </div>
     </div>
   </article>
-  @if(auth.userId === postDetail.userId){
+  <!-- @if(auth.userId === postDetail.userId){
     <a
       [routerLink]="['/edit-post',postDetail.id]"
       class="group relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500"
@@ -52,6 +54,19 @@
         class="block border border-current bg-white px-12 py-3 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1"
       >
         Edit Post
+      </span>
+    </a>
+  } -->
+  @if(auth.userId === postDetail.userId){
+    <a
+      (click)="deletePost(postDetail.id)"
+      class="group mt-4 relative inline-block text-sm font-medium text-red-600 focus:outline-none focus:ring active:text-red-500"
+    >
+      <span class="absolute inset-0 border border-current"></span>
+      <span
+        class="block border border-current bg-white px-12 py-3 transition-transform group-hover:-translate-x-1 group-hover:-translate-y-1"
+      >
+        Delete Blog
       </span>
     </a>
   }

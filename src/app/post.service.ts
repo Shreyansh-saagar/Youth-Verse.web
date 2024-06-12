@@ -33,6 +33,12 @@ export class PostService {
 
   editPost(id: any, updatePost: FormData): Observable<any> {
     return this.http.patch(`${this.baseUrl}/post/update/${id}`, updatePost, {
+      withCredentials: true
+    });
+  }
+
+  deletePost(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/post/delete/${id}`, {
       withCredentials: true,
     });
   }
